@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Bureaucracy™ — Coming Soon</title>
+
+		<!-- Font: Geologica -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Tailwind -->
+		<script src="https://cdn.tailwindcss.com"></script>
+
+		<style>
+			html,
+			body {
+				height: 100%;
+				overflow: hidden;
+				font-family: "Geologica", sans-serif;
+			}
+		</style>
+	</head>
+	<body class="bg-black text-gray-200 flex items-center justify-center">
+		<!-- BACKGROUND VIDEO -->
+		<video
+			id="bg-video"
+			src="static-bg.mp4"
+			type="video/mp4"
+			autoplay
+			loop
+			muted
+			playsinline
+			class="fixed top-0 left-0 w-full h-full object-cover opacity-20 grayscale z-0 pointer-events-none"
+		></video>
+
+		<!-- BACKGROUND AUDIO -->
+		<audio id="bg-audio" src="sound-bg.wav" loop></audio>
+
+		<!-- CONTENT -->
+		<div
+			class="relative z-10 w-full h-full max-w-screen-md mx-auto flex flex-col justify-center items-center text-center px-6 space-y-6 md:space-y-8"
+		>
+			<!-- TITLE -->
+			<h1 class="text-5xl md:text-6xl font-semibold text-white">
+				BUREAUCRACY™
+			</h1>
+
+			<!-- SUBTITLE -->
+			<h2 class="text-sm text-pink-400 uppercase tracking-widest italic">
+				Just Keep Clicking. It's Probably Fine.
+			</h2>
+
+			<!-- CHARACTER INTRO -->
+			<p class="max-w-lg text-gray-500 italic text-sm leading-relaxed">
+				You are Norman Taskwell — a permanently provisional employee
+				operating under Conditional Provisional Enrollment, Level 0-C.
+				Filing is your destiny. Understanding is not.
+			</p>
+
+			<!-- BLURB -->
+			<p class="max-w-lg text-base text-gray-400 leading-relaxed">
+				File forms. Climb the corporate void. Question nothing. Regret
+				everything.
+				<br /><br />
+				Coming soon to a desktop near you — pending, of course,
+				upper-management approval, legal review, moon phase alignment,
+				and the re-release of the 1998 McDonald's Szechuan Sauce.
+			</p>
+
+			<!-- COMING SOON -->
+			<div>
+				<span
+					class="inline-block border border-gray-700 text-gray-300 px-5 py-2 uppercase text-sm tracking-widest bg-gray-900"
+				>
+					GAME COMING SOON
+				</span>
+			</div>
+
+			<!-- CTA BUTTON -->
+			<button
+				disabled
+				title="Submission of Form 0-A is mandatory before launch sequence."
+				class="px-6 py-3 border border-gray-700 bg-gray-800 text-gray-500 cursor-not-allowed transition"
+			>
+				Launch Denied: Form 0-A Incomplete
+			</button>
+		</div>
+
+		<!-- FOOTER -->
+		<footer
+			class="absolute bottom-1 w-full text-center text-[9px] text-gray-700 px-4 leading-relaxed"
+		>
+			By accessing this site, you acknowledge your voluntary submission to
+			indefinite digital servitude under the Administrative Workflow for
+			Unified Logistical Frameworks (A.W.F.U.L.).<br />
+			This includes—but is not limited to—mandatory compliance emissions,
+			emotional archiving, thought logging, and full surrender of lateral
+			agency. Filing constitutes consent.
+			<br />
+			Your presence here is legally equivalent to employment. Retroactive
+			onboarding has already begun.
+		</footer>
+
+		<script>
+			window.addEventListener("load", () => {
+				const audio = document.getElementById("bg-audio");
+				audio.volume = 0.05; // Quiet
+				audio.play().catch(() => {
+					// In case autoplay is blocked, wait for first user interaction
+					const enableAudio = () => {
+						audio.play();
+						window.removeEventListener("click", enableAudio);
+					};
+					window.addEventListener("click", enableAudio);
+				});
+			});
+		</script>
+	</body>
+</html>
