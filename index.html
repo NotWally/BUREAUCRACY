@@ -5,7 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Bureaucracy™ — Coming Soon</title>
 		<link rel="icon" href="/logoBUREAUCRACY.png" />
-
 		<!-- Font: Geologica -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,21 +12,17 @@
 			href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600&display=swap"
 			rel="stylesheet"
 		/>
-
 		<!-- Font Awesome -->
 		<script
 			src="https://kit.fontawesome.com/2953becb25.js"
 			crossorigin="anonymous"
 		></script>
-
 		<!-- Tailwind -->
 		<script src="https://cdn.tailwindcss.com"></script>
-
 		<style>
 			html,
 			body {
 				height: 100%;
-				overflow: hidden;
 				font-family: "Geologica", sans-serif;
 			}
 			@keyframes tickFlash {
@@ -90,34 +85,24 @@
 			}
 		</style>
 	</head>
-
 	<body class="bg-black text-gray-200">
-		<!-- MOBILE BLOCKER: visible only on small screens -->
+		<!-- MOBILE BLOCKER -->
 		<div
 			class="sm:hidden flex flex-col items-center justify-center h-screen px-6 text-center space-y-4"
 		>
-			<!-- Title -->
 			<h1 class="text-4xl font-semibold text-white">BUREAUCRACY™</h1>
-
-			<!-- Countdown -->
 			<p class="text-xs text-gray-500 italic leading-none">
 				Deployment scheduled in:
 				<span id="mobile-timer" class="text-white font-mono">...</span>
 			</p>
-
-			<!-- Subtitle -->
 			<h2 class="text-xs text-pink-400 uppercase tracking-widest italic">
 				Just Keep Clicking. It's Probably Fine.
 			</h2>
-
-			<!-- Warning Message -->
 			<p class="text-gray-500 text-sm italic max-w-xs leading-relaxed">
 				Form 42-B strictly prohibits accessing this system from a mobile
 				device. Please resubmit using a desktop. Preferably something
 				beige.
 			</p>
-
-			<!-- Social Icons -->
 			<div class="flex space-x-5 text-xl text-gray-600 pt-2">
 				<a
 					href="https://www.instagram.com/wallyalex06/"
@@ -144,7 +129,6 @@
 				id="main"
 				class="relative z-10 w-full h-full max-w-screen-md mx-auto flex flex-col justify-center items-center text-center px-6 space-y-5 md:space-y-8"
 			>
-				<!-- TITLE + TIMER -->
 				<div class="flex flex-col items-center leading-none">
 					<h1
 						class="text-5xl md:text-6xl font-semibold text-white cursor-pointer"
@@ -162,15 +146,11 @@
 						>
 					</p>
 				</div>
-
-				<!-- SUBTITLE -->
 				<h2
 					class="text-sm text-pink-400 uppercase tracking-widest italic"
 				>
 					Just Keep Clicking. It's Probably Fine.
 				</h2>
-
-				<!-- BLURB -->
 				<div
 					id="fade-targets"
 					class="flex flex-col items-center space-y-6"
@@ -255,52 +235,43 @@
 			const timerText = document.getElementById("timer-value");
 			const timerWrapper = document.getElementById("timer");
 			const mobileTimer = document.getElementById("mobile-timer");
-
 			const releaseDate = new Date("2025-08-01T09:00:00Z");
 
 			function updateCountdown() {
 				const now = new Date();
 				const diff = releaseDate - now;
-
 				if (diff <= 0) {
-					const liveHTML = `
-				<span class="text-red-500 font-semibold tracking-wide flex items-center justify-center gap-2">
+					const liveHTML = `<span class="text-red-500 font-semibold tracking-wide flex items-center justify-center gap-2">
 					THE GAME IS LIVE
 					<span class="inline-block w-2 h-2 bg-red-500 rounded-full"></span>
-				</span>
-			`;
+				</span>`;
 					if (timerWrapper) timerWrapper.innerHTML = liveHTML;
-					if (mobileTimer) mobileTimer.textContent = "LIVE";
-					if (mobileTimer)
+					if (mobileTimer) {
+						mobileTimer.textContent = "LIVE";
 						mobileTimer.classList.add(
 							"text-red-500",
 							"font-semibold"
 						);
+					}
 					return;
 				}
-
 				const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 				const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
 				const minutes = Math.floor((diff / (1000 * 60)) % 60);
 				const seconds = Math.floor((diff / 1000) % 60);
-
 				const timeString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
 				if (timerText) {
 					timerText.textContent = timeString;
 					timerText.classList.add("tick");
 					setTimeout(() => timerText.classList.remove("tick"), 300);
 					if (diff <= 86400000) timerText.classList.add("urgent");
 				}
-
 				if (mobileTimer) {
 					mobileTimer.textContent = timeString;
 				}
 			}
-
 			updateCountdown();
 			setInterval(updateCountdown, 1000);
-
 			if (timerWrapper) {
 				setInterval(() => {
 					if (Math.random() < 0.8) {
@@ -314,19 +285,70 @@
 			}
 		</script>
 
-		<!-- WIKI ICON -->
-		<div class="hidden sm:block absolute top-4 left-4 z-10 group">
-			<button
-				aria-label="View Wiki"
-				class="text-gray-600 hover:text-white text-lg transition"
-			>
-				<i class="fas fa-circle-question"></i>
-			</button>
-			<div
-				class="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 text-[10px] text-gray-400 bg-gray-900 border border-gray-700 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap pointer-events-none"
-			>
-				Bureaucracy Wiki Pending...
+		<!-- COOKIE BANNER -->
+		<div
+			id="cookie-banner"
+			class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-gray-300 text-xs px-6 py-3 rounded-lg shadow-lg border border-gray-700 z-50 w-[90%] max-w-md flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:justify-between md:space-x-4"
+			style="display: none"
+		>
+			<p class="text-center md:text-left text-[11px] leading-snug">
+				This site uses cookies for totally essential, definitely
+				non-intrusive analytics.
+			</p>
+			<div class="flex space-x-2">
+				<div class="flex space-x-2">
+					<button
+						id="cookie-accept"
+						class="bg-pink-500 hover:bg-pink-600 text-white px-3 py-1 rounded-sm text-xs transition"
+					>
+						<i class="fas fa-check"></i>
+					</button>
+					<button
+						id="cookie-decline"
+						class="bg-gray-800 hover:bg-gray-700 text-gray-400 px-3 py-1 rounded-sm text-xs transition"
+					>
+						<i class="fas fa-times"></i>
+					</button>
+				</div>
 			</div>
 		</div>
+
+		<script>
+			function enableAnalytics() {
+				const gaScript = document.createElement("script");
+				gaScript.src =
+					"https://www.googletagmanager.com/gtag/js?id=G-2K2V116QZB";
+				gaScript.async = true;
+				document.head.appendChild(gaScript);
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				window.gtag = gtag;
+				gtag("js", new Date());
+				gtag("config", "G-2K2V116QZB");
+			}
+			function showCookieBanner() {
+				const banner = document.getElementById("cookie-banner");
+				banner.style.display = "flex";
+				document.getElementById("cookie-accept").onclick = () => {
+					localStorage.setItem("cookieConsent", "accepted");
+					enableAnalytics();
+					banner.remove();
+				};
+				document.getElementById("cookie-decline").onclick = () => {
+					localStorage.setItem("cookieConsent", "declined");
+					banner.remove();
+				};
+			}
+			window.addEventListener("DOMContentLoaded", () => {
+				const consent = localStorage.getItem("cookieConsent");
+				if (consent === "accepted") {
+					enableAnalytics();
+				} else if (!consent) {
+					showCookieBanner();
+				}
+			});
+		</script>
 	</body>
 </html>
