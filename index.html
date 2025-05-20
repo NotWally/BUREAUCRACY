@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Bureaucracy™ — Coming Soon</title>
 		<link rel="icon" href="/logoBUREAUCRACY.png" />
+
 		<!-- Font: Geologica -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,7 +30,6 @@
 				overflow: hidden;
 				font-family: "Geologica", sans-serif;
 			}
-
 			@keyframes tickFlash {
 				0% {
 					opacity: 1;
@@ -85,69 +85,40 @@
 				}
 			}
 			.urgent {
-				color: #f87171; /* red-400 */
+				color: #f87171;
 				animation: pulse 1s infinite;
 			}
 		</style>
 	</head>
-	<body class="bg-black text-gray-200 flex items-center justify-center">
-		<!-- CONTENT -->
-		<div
-			id="main"
-			class="relative z-10 w-full h-full max-w-screen-md mx-auto flex flex-col justify-center items-center text-center px-6 space-y-5 md:space-y-8"
-		>
-			<!-- TITLE + TIMER -->
-			<div class="flex flex-col items-center leading-none">
-				<h1
-					class="text-5xl md:text-6xl font-semibold text-white cursor-pointer"
-					onclick="location.reload();"
-				>
-					BUREAUCRACY™
-				</h1>
-				<p
-					id="timer"
-					class="text-sm md:text-base text-gray-500 italic m-0 leading-none"
-				>
-					Deployment scheduled in:
-					<span id="timer-value" class="text-white font-mono"
-						>...</span
-					>
-				</p>
-			</div>
 
-			<!-- SUBTITLE -->
-			<h2 class="text-sm text-pink-400 uppercase tracking-widest italic">
+	<body class="bg-black text-gray-200">
+		<!-- MOBILE BLOCKER: visible only on small screens -->
+		<div
+			class="sm:hidden flex flex-col items-center justify-center h-screen px-6 text-center space-y-4"
+		>
+			<!-- Title -->
+			<h1 class="text-4xl font-semibold text-white">BUREAUCRACY™</h1>
+
+			<!-- Countdown -->
+			<p class="text-xs text-gray-500 italic leading-none">
+				Deployment scheduled in:
+				<span id="mobile-timer" class="text-white font-mono">...</span>
+			</p>
+
+			<!-- Subtitle -->
+			<h2 class="text-xs text-pink-400 uppercase tracking-widest italic">
 				Just Keep Clicking. It's Probably Fine.
 			</h2>
 
-			<!-- CONTENT -->
-			<div id="fade-targets" class="flex flex-col items-center space-y-6">
-				<p
-					class="max-w-lg text-gray-500 italic text-sm leading-relaxed"
-				>
-					You are Norman Taskwell — a permanently provisional employee
-					operating under Conditional Provisional Enrollment, Level
-					0-C. Filing is your destiny. Understanding is not.
-				</p>
-				<p class="max-w-xlg text-base text-gray-400 leading-relaxed">
-					File forms. Climb the corporate void. Question nothing.
-					Regret everything.
-					<br /><br />
-					Coming soon to a desktop near you — pending, of course,
-					upper-management approval, legal review, moon phase
-					alignment, and the re-release of the 1998 McDonald's
-					Szechuan Sauce.
-				</p>
-			</div>
-		</div>
+			<!-- Warning Message -->
+			<p class="text-gray-500 text-sm italic max-w-xs leading-relaxed">
+				Form 42-B strictly prohibits accessing this system from a mobile
+				device. Please resubmit using a desktop. Preferably something
+				beige.
+			</p>
 
-		<footer
-			class="absolute bottom-0 w-full px-4 py-6 text-[9px] text-gray-500 leading-relaxed text-center bg-black"
-		>
-			<!-- SOCIAL ICONS -->
-			<div
-				class="mb-3 flex justify-center space-x-5 text-xl z-10 relative"
-			>
+			<!-- Social Icons -->
+			<div class="flex space-x-5 text-xl text-gray-600 pt-2">
 				<a
 					href="https://www.instagram.com/wallyalex06/"
 					target="_blank"
@@ -165,38 +136,126 @@
 					<i class="fab fa-github"></i>
 				</a>
 			</div>
+		</div>
 
-			<!-- FOOTER TEXT -->
-			<p>
-				By accessing this site, you acknowledge your voluntary
-				submission to indefinite digital servitude under the
-				<span class="text-gray-400 font-semibold"
-					>Administrative Workflow for Unified Logistical Frameworks
-					(A.W.F.U.L.)</span
-				>.
-			</p>
-			<p>
-				This includes — but is not limited to — mandatory compliance
-				emissions, emotional archiving, thought logging, and full
-				surrender of lateral agency.
-				<span class="text-gray-400 font-semibold"
-					>Filing constitutes consent.</span
+		<!-- MAIN SITE -->
+		<div class="hidden sm:flex items-center justify-center h-screen">
+			<div
+				id="main"
+				class="relative z-10 w-full h-full max-w-screen-md mx-auto flex flex-col justify-center items-center text-center px-6 space-y-5 md:space-y-8"
+			>
+				<!-- TITLE + TIMER -->
+				<div class="flex flex-col items-center leading-none">
+					<h1
+						class="text-5xl md:text-6xl font-semibold text-white cursor-pointer"
+						onclick="location.reload();"
+					>
+						BUREAUCRACY™
+					</h1>
+					<p
+						id="timer"
+						class="text-sm md:text-base text-gray-500 italic m-0 leading-none"
+					>
+						Deployment scheduled in:
+						<span id="timer-value" class="text-white font-mono"
+							>...</span
+						>
+					</p>
+				</div>
+
+				<!-- SUBTITLE -->
+				<h2
+					class="text-sm text-pink-400 uppercase tracking-widest italic"
 				>
-			</p>
-			<p>
-				Your presence here is legally equivalent to employment.
-				<span class="text-gray-400 font-semibold"
-					>Retroactive onboarding has already begun.</span
+					Just Keep Clicking. It's Probably Fine.
+				</h2>
+
+				<!-- BLURB -->
+				<div
+					id="fade-targets"
+					class="flex flex-col items-center space-y-6"
 				>
-			</p>
-		</footer>
+					<p
+						class="max-w-lg text-gray-500 italic text-sm leading-relaxed"
+					>
+						You are Norman Taskwell — a permanently provisional
+						employee operating under Conditional Provisional
+						Enrollment, Level 0-C. Filing is your destiny.
+						Understanding is not.
+					</p>
+					<p
+						class="max-w-xlg text-base text-gray-400 leading-relaxed"
+					>
+						File forms. Climb the corporate void. Question nothing.
+						Regret everything.
+						<br /><br />
+						Coming soon to a desktop near you — pending, of course,
+						upper-management approval, legal review, moon phase
+						alignment, and the re-release of the 1998 McDonald's
+						Szechuan Sauce.
+					</p>
+				</div>
+			</div>
+
+			<!-- FOOTER -->
+			<footer
+				class="absolute bottom-0 w-full px-4 py-6 text-[9px] text-gray-500 leading-relaxed text-center bg-black"
+			>
+				<div
+					class="mb-3 flex justify-center space-x-5 text-xl z-10 relative"
+				>
+					<a
+						href="https://www.instagram.com/wallyalex06/"
+						target="_blank"
+						aria-label="Instagram"
+						class="hover:text-white transition"
+					>
+						<i class="fab fa-instagram"></i>
+					</a>
+					<a
+						href="https://github.com/NotWally"
+						target="_blank"
+						aria-label="GitHub"
+						class="hover:text-white transition"
+					>
+						<i class="fab fa-github"></i>
+					</a>
+				</div>
+				<p>
+					By accessing this site, you acknowledge your voluntary
+					submission to
+					<span class="text-gray-400 font-semibold"
+						>indefinite digital servitude</span
+					>
+					under the
+					<span class="text-gray-400 font-semibold"
+						>Administrative Workflow for Unified Logistical
+						Frameworks (A.W.F.U.L.)</span
+					>.
+				</p>
+				<p>
+					This includes — but is not limited to — mandatory compliance
+					emissions, emotional archiving, thought logging, and full
+					surrender of lateral agency.
+					<span class="text-gray-400 font-semibold"
+						>Filing constitutes consent.</span
+					>
+				</p>
+				<p>
+					Your presence here is legally equivalent to employment.
+					<span class="text-gray-400 font-semibold"
+						>Retroactive onboarding has already begun.</span
+					>
+				</p>
+			</footer>
+		</div>
 
 		<!-- COUNTDOWN SCRIPT -->
 		<script>
 			const timerText = document.getElementById("timer-value");
 			const timerWrapper = document.getElementById("timer");
+			const mobileTimer = document.getElementById("mobile-timer");
 
-			// Simulated launch for styling — change to real date for production
 			const releaseDate = new Date("2025-08-01T09:00:00Z");
 
 			function updateCountdown() {
@@ -204,12 +263,19 @@
 				const diff = releaseDate - now;
 
 				if (diff <= 0) {
-					timerWrapper.innerHTML = `
+					const liveHTML = `
 				<span class="text-red-500 font-semibold tracking-wide flex items-center justify-center gap-2">
 					THE GAME IS LIVE
-                    <span class="inline-block w-2 h-2 bg-red-500 rounded-full"></span>
+					<span class="inline-block w-2 h-2 bg-red-500 rounded-full"></span>
 				</span>
 			`;
+					if (timerWrapper) timerWrapper.innerHTML = liveHTML;
+					if (mobileTimer) mobileTimer.textContent = "LIVE";
+					if (mobileTimer)
+						mobileTimer.classList.add(
+							"text-red-500",
+							"font-semibold"
+						);
 					return;
 				}
 
@@ -218,32 +284,38 @@
 				const minutes = Math.floor((diff / (1000 * 60)) % 60);
 				const seconds = Math.floor((diff / 1000) % 60);
 
-				timerText.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+				const timeString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-				timerText.classList.add("tick");
-				setTimeout(() => timerText.classList.remove("tick"), 300);
+				if (timerText) {
+					timerText.textContent = timeString;
+					timerText.classList.add("tick");
+					setTimeout(() => timerText.classList.remove("tick"), 300);
+					if (diff <= 86400000) timerText.classList.add("urgent");
+				}
 
-				if (diff <= 86400000) {
-					timerText.classList.add("urgent");
+				if (mobileTimer) {
+					mobileTimer.textContent = timeString;
 				}
 			}
 
 			updateCountdown();
 			setInterval(updateCountdown, 1000);
 
-			setInterval(() => {
-				if (Math.random() < 0.8) {
-					timerWrapper.classList.add("glitch");
-					setTimeout(
-						() => timerWrapper.classList.remove("glitch"),
-						300
-					);
-				}
-			}, 3000);
+			if (timerWrapper) {
+				setInterval(() => {
+					if (Math.random() < 0.8) {
+						timerWrapper.classList.add("glitch");
+						setTimeout(
+							() => timerWrapper.classList.remove("glitch"),
+							300
+						);
+					}
+				}, 3000);
+			}
 		</script>
 
-		<!-- WIKI ICON BUTTON (TOP-LEFT WITH TOOLTIP, INACTIVE) -->
-		<div class="absolute top-4 left-4 z-10 group">
+		<!-- WIKI ICON -->
+		<div class="hidden sm:block absolute top-4 left-4 z-10 group">
 			<button
 				aria-label="View Wiki"
 				class="text-gray-600 hover:text-white text-lg transition"
