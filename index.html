@@ -88,6 +88,7 @@
 	<body class="bg-black text-gray-200 overflow-hidden sm:overflow-auto">
 		<!-- MOBILE BLOCKER -->
 		<div
+			id="mobile-blocker"
 			class="sm:hidden flex flex-col items-center justify-center h-screen px-6 text-center space-y-4"
 		>
 			<h1 class="text-4xl font-semibold text-white">BUREAUCRACY™</h1>
@@ -377,32 +378,6 @@
 					showCookieBanner();
 				}
 			});
-		</script>
-
-		<script>
-			function isMobileOS() {
-				const userAgent =
-					navigator.userAgent || navigator.vendor || window.opera;
-				return /android|iphone|ipad|ipod|windows phone/i.test(
-					userAgent.toLowerCase()
-				);
-			}
-
-			function handleMobileBlock() {
-				const isMobile = isMobileOS();
-				const mobileBlocker = document.querySelector(".sm\\:hidden");
-				const mainSite = document.querySelector(".sm\\:flex");
-
-				if (isMobile) {
-					mobileBlocker.classList.remove("hidden");
-					mainSite.classList.add("hidden");
-				} else {
-					mobileBlocker.classList.add("hidden");
-					mainSite.classList.remove("hidden");
-				}
-			}
-
-			window.addEventListener("DOMContentLoaded", handleMobileBlock);
 		</script>
 	</body>
 </html>
