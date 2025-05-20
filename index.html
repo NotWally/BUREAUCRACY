@@ -230,21 +230,34 @@
 			</footer>
 		</div>
 
-		<!-- COUNTDOWN SCRIPT -->
+		<!-- TIMER SCRIPT   -->
 		<script>
 			const timerText = document.getElementById("timer-value");
 			const timerWrapper = document.getElementById("timer");
 			const mobileTimer = document.getElementById("mobile-timer");
+
 			const releaseDate = new Date("2025-08-01T09:00:00Z");
+
+			function applyTickEffect(el) {
+				el.classList.add("tick");
+				setTimeout(() => el.classList.remove("tick"), 300);
+			}
+
+			function applyUrgency(el) {
+				el.classList.add("urgent");
+			}
 
 			function updateCountdown() {
 				const now = new Date();
 				const diff = releaseDate - now;
+
 				if (diff <= 0) {
-					const liveHTML = `<span class="text-red-500 font-semibold tracking-wide flex items-center justify-center gap-2">
+					const liveHTML = `
+				<span class="text-red-500 font-semibold tracking-wide flex items-center justify-center gap-2">
 					THE GAME IS LIVE
 					<span class="inline-block w-2 h-2 bg-red-500 rounded-full"></span>
 				</span>`;
+
 					if (timerWrapper) timerWrapper.innerHTML = liveHTML;
 					if (mobileTimer) {
 						mobileTimer.textContent = "LIVE";
@@ -255,34 +268,49 @@
 					}
 					return;
 				}
+
 				const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 				const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
 				const minutes = Math.floor((diff / (1000 * 60)) % 60);
 				const seconds = Math.floor((diff / 1000) % 60);
+
 				const timeString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
 				if (timerText) {
 					timerText.textContent = timeString;
-					timerText.classList.add("tick");
-					setTimeout(() => timerText.classList.remove("tick"), 300);
-					if (diff <= 86400000) timerText.classList.add("urgent");
+					applyTickEffect(timerText);
+					if (diff <= 86400000) applyUrgency(timerText);
 				}
+
 				if (mobileTimer) {
 					mobileTimer.textContent = timeString;
+					applyTickEffect(mobileTimer);
+					if (diff <= 86400000) applyUrgency(mobileTimer);
 				}
 			}
+
 			updateCountdown();
 			setInterval(updateCountdown, 1000);
-			if (timerWrapper) {
-				setInterval(() => {
-					if (Math.random() < 0.8) {
+
+			// Add glitch effect for both desktop and mobile timers
+			setInterval(() => {
+				if (Math.random() < 0.8) {
+					if (timerWrapper) {
 						timerWrapper.classList.add("glitch");
 						setTimeout(
 							() => timerWrapper.classList.remove("glitch"),
 							300
 						);
 					}
-				}, 3000);
-			}
+					if (mobileTimer) {
+						mobileTimer.classList.add("glitch");
+						setTimeout(
+							() => mobileTimer.classList.remove("glitch"),
+							300
+						);
+					}
+				}
+			}, 3000);
 		</script>
 
 		<!-- COOKIE BANNER -->
